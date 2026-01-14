@@ -11,44 +11,59 @@ grade = ""
 def calc_percentage():
     global percentage
 
-    science = int(science_entry.get())
-    maths = int(maths_entry.get())
-    english = int(english_entry.get())
-    history = int(history_entry.get())
-    geography = int(geography_entry.get())
+    name = name_entry.get()
+    roll_num = roll_num_entry.get()
 
-    total = science + maths + english + history + geography
-    percentage = (total/500)*100
+    if (name == "" or roll_num == ""):
+        messagebox.showinfo("Error!","Please enter Name and RollNumber first.")
     
-    gr_pe.config(text = "Your percentage is {}".format(percentage))
+    else:
+        science = int(science_entry.get())
+        maths = int(maths_entry.get())
+        english = int(english_entry.get())
+        history = int(history_entry.get())
+        geography = int(geography_entry.get())
+
+        total = science + maths + english + history + geography
+        percentage = (total/500)*100
+    
+        gr_pe.config(text = "Your percentage is {}".format(percentage))
 
 def calc_grade():
     global percentage, grade
 
-    if percentage >= 80:
-        grade = "A"
-    elif percentage >= 70 and percentage < 80:
-        grade = "B"
-    elif percentage >= 60 and percentage < 70:
-        grade = "C"
-    elif percentage >= 50 and percentage < 60:
-        grade = "D"
+    if percentage == 0:
+        messagebox.showinfo("Error!","Please calculate percentage before calculating grade.")    
+
     else:
-        grade = "F"
+        if percentage >= 80:
+            grade = "A"
+        elif percentage >= 70 and percentage < 80:
+            grade = "B"
+        elif percentage >= 60 and percentage < 70:
+            grade = "C"
+        elif percentage >= 50 and percentage < 60:
+            grade = "D"
+        else:
+            grade = "F"
     
-    gr_pe.config(text = "Your grade is {}".format(grade))
+        gr_pe.config(text = "Your grade is {}".format(grade))
 
 def save_report():
     global percentage, grade
 
-    name = name_entry.get()
-    roll_num = roll_num_entry.get()
-    file = open("student.txt","a")
-    file.write("Name: {} , RollNumber: {} , Percentage: {} , Grade: {}".format(name,roll_num,percentage,grade))
-    file.write("\n")
-    file.close()
+    if percentage == 0:
+        messagebox.showinfo("Error","Please enter a value for the percentage.")
 
-    messagebox.showinfo("Success!","Your details are saved!")
+    else:
+        name = name_entry.get()
+        roll_num = roll_num_entry.get()
+        file = open("student.txt","a")
+        file.write("Name: {} , RollNumber: {} , Percentage: {} , Grade: {}".format(name,roll_num,percentage,grade))
+        file.write("\n")
+        file.close()
+
+        messagebox.showinfo("Success!","Your details are saved!")
 
 main_frame = Frame(window, bg  ="white")
 main_frame.place(x = 10, y = 10, width = 700, height = 280)
