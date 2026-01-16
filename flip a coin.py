@@ -18,6 +18,7 @@ def play_game(user_choice):
         messagebox.showinfo("Result:","Player Wins!")     
     else:
         result = "Bot wins"
+        messagebox.showinfo("Result:","Bot Wins!") 
 
     result_label.config(text = "Result: {}".format(result))
 
