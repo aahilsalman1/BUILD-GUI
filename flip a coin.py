@@ -8,17 +8,19 @@ window.title("Flip a Coin!")
 
 
 def play_game(user_choice):
-    bot_choice = random.choice(["Heads", "Tails"])
+    coin = random.choice(["Heads", "Tails"])
 
-    if bot_choice == user_choice:
-        result = "Draw"
-        messagebox.showinfo("Result:","Draw!")
-    elif user_choice == "Heads":
-        result = "Player wins"
-        messagebox.showinfo("Result:","Player Wins!")     
+    if user_choice == "Heads":
+       bot_choice = "Tails"
     else:
+       bot_choice  = "Heads"
+        
+    if coin == user_choice:
+        result = "Player Wins"
+        messagebox.showinfo("Result:","Player Wins!")
+    elif coin == bot_choice:
         result = "Bot wins"
-        messagebox.showinfo("Result:","Bot Wins!") 
+        messagebox.showinfo("Result:","Bot Wins!")     
 
     result_label.config(text = "Result: {}".format(result))
 
