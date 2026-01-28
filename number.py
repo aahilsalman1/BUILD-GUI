@@ -16,8 +16,10 @@ def check_guess():
     guess = int(guess_entry.get())
     if guess == number:
         label1.config(text = "Correct! You win 🎉")
-    else:
-        label1.config(text = "Wrong! Try again")
+    elif guess >= number:
+        label1.config(text = "Guess Lower!")  
+    elif guess <= number:
+        label1.config(text = "Guess Higher!")
 
 label1 = Label(window, text = "Welcome to our game!")
 label1.place(x = 120, y = 20)
