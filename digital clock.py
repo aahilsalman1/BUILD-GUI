@@ -18,8 +18,11 @@ def show_time():
 
 def show_date():
     x = datetime.datetime.now()
-    date = x.strftime("%D")
-    date_label.config(text = "The date is: " + str(date))
+    day = x.strftime("%d")
+    month = x.strftime("%m")
+    year = x.strftime("%Y")
+    current_date = day + "/" + month + "/" + year
+    date_label.config(text = "The date is: " + str(current_date))
 
 
 label_clock = Label(
